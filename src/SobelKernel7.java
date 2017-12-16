@@ -1,7 +1,7 @@
 
 public class SobelKernel7 extends Kernel{
 	
-	private SobelMode mode;
+	private int mode;
 	
 	private int[][] horizontalKernel = {
 			{-3, -4, -5, -6, -5, -4, -3},
@@ -23,19 +23,19 @@ public class SobelKernel7 extends Kernel{
 			{3, 2, 1, 0, -1, -2, -3}
 	};
 
-	public SobelKernel7(SobelMode mode) {
-		super(7); // 3x3 kernel
-		this.mode = SobelMode.Approximate;
+	public SobelKernel7(int mode) {
+		super(7);
+		this.mode = mode;
 	}
 
 	// The supplied image data must be 7x7
 	@Override
 	public int applyKernel(int[][] sectionData) {
 		if(sectionData.length == size && sectionData[0].length == size) {
-			if(mode == SobelMode.Exact) {
+			if(mode == KernelMode.Approximate) {
 				return applyApproximate(sectionData);
 			}
-			else if(mode == SobelMode.Approximate) {
+			else if(mode == KernelMode.Exact) {
 				return applyExact(sectionData);
 			}
 		}
@@ -52,7 +52,7 @@ public class SobelKernel7 extends Kernel{
 				weight += verticalKernel[x][y] * sectionData[x][y];
 			}
 		}
-		return weight / 6;
+		return weight / (size*size);
 	}
 	
 	private int applyHorizontal(int[][] sectionData) {
@@ -62,7 +62,7 @@ public class SobelKernel7 extends Kernel{
 				weight += horizontalKernel[x][y] * sectionData[x][y];
 			}
 		}
-		return weight / 6;
+		return weight / (size*size);
 	}
 	
 	private int applyApproximate(int[][] sectionData){
