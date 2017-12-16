@@ -1,6 +1,3 @@
-# Sobel Image Processor
-
-This project is a very inefficient way to process images with a Sobel filter.
 
 This project was created as something for me to do in my free time, 
 optimizations will be infrequent, but are planned.
