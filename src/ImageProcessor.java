@@ -1,9 +1,6 @@
 import java.awt.image.BufferedImage;
-import java.awt.image.DataBufferInt;
-import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -67,16 +64,6 @@ public class ImageProcessor {
 		}
 	}
 	
-	private int[] concat(int[][] data) {
-		int[] outData = new int[data.length * data[0].length];
-		for(int x = 0; x < data.length; x++) {
-			for(int y = 0; y < data.length; y++) {
-				outData[x * y] = data[x][y];
-			}
-		}
-		return outData;
-	}
-	
 	public int averageValue(int[][] imageData) {
 		int average = 0;
 		for(int x = 0; x < imageData.length; x++) {
@@ -85,13 +72,5 @@ public class ImageProcessor {
 			}
 		}
 		return average / (imageData.length * imageData[0].length);
-	}
-	
-	private byte[] toByteArray(int[] data) {
-		byte[] outData = new byte[data.length];
-		for(int n = 0; n < data.length; n++) {
-			outData[n] = (byte)data[n];
-		}
-		return outData;
 	}
 }
