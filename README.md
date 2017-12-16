@@ -1,3 +1,6 @@
+# Sobel Image Processor
+
+This project is a very inefficient way to process images with a Sobel filter.
 
 This project was created as something for me to do in my free time, 
 optimizations will be infrequent, but are planned.
@@ -6,7 +9,8 @@ Currently the program is single threaded and takes ~20 seconds to process the in
 For the sake of your sanity, I recommend using smaller images.
 
 For larger images, larger kernels are required to obtain the desired results.
-The current image uses the 7x7 kernel, more kernels are in the works.
+The current image uses the 7x7 kernel, there is a 3x3 kernel available for smaller images.
+Dynamic sizes are in the works.
 
 # Planned Features
 * Multithreaded convolution (Somewhat implemented, not functional)
