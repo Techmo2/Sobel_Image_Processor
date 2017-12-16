@@ -1,7 +1,7 @@
 
 public class SobelKernel3 extends Kernel{
 	
-	private SobelMode mode;
+	private int mode;
 	
 	private int[][] horizontalKernel = {
 			{1, 2, 1},
@@ -15,19 +15,19 @@ public class SobelKernel3 extends Kernel{
 			{-1, -2, 1}
 	};
 
-	public SobelKernel3(SobelMode mode) {
+	public SobelKernel3(int mode) {
 		super(3); // 3x3 kernel
-		this.mode = SobelMode.Exact;
+		this.mode = mode;
 	}
 
 	// The supplied image data must be 3x3
 	@Override
 	public int applyKernel(int[][] sectionData) {
-		if(sectionData.length == 3 && sectionData[0].length == 3) {
-			if(mode == SobelMode.Exact) {
+		if(sectionData.length == size && sectionData[0].length == size) {
+			if(mode == KernelMode.Approximate) {
 				return applyApproximate(sectionData);
 			}
-			else if(mode == SobelMode.Approximate) {
+			else if(mode == KernelMode.Exact) {
 				return applyExact(sectionData);
 			}
 		}
@@ -39,22 +39,22 @@ public class SobelKernel3 extends Kernel{
 	
 	private int applyVertical(int[][] sectionData) {
 		int weight = 0;
-		for(int x = 0; x < 3; x++) {
-			for(int y = 0; y < 3; y++) {
+		for(int x = 0; x < size; x++) {
+			for(int y = 0; y < size; y++) {
 				weight += verticalKernel[x][y] * sectionData[x][y];
 			}
 		}
-		return weight / 6;
+		return weight / (size*size);
 	}
 	
 	private int applyHorizontal(int[][] sectionData) {
 		int weight = 0;
-		for(int x = 0; x < 3; x++) {
-			for(int y = 0; y < 3; y++) {
+		for(int x = 0; x < size; x++) {
+			for(int y = 0; y < size; y++) {
 				weight += horizontalKernel[x][y] * sectionData[x][y];
 			}
 		}
-		return weight / 6;
+		return weight / (size*size);
 	}
 	
 	private int applyApproximate(int[][] sectionData){
@@ -68,8 +68,4 @@ public class SobelKernel3 extends Kernel{
 		int horizontalWeight = applyHorizontal(sectionData);
 		return (int) Math.sqrt(verticalWeight * verticalWeight + horizontalWeight * horizontalWeight);
 	}
-}
-
-enum SobelMode {
-	Exact, Approximate;
 }
