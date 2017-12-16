@@ -9,8 +9,8 @@ For larger images, larger kernels are required to obtain the desired results.
 The current image uses the 7x7 kernel, more kernels are in the works.
 
 # Planned Features
-* Multithreaded convolution
-* OpenCL support (or possible CUDA, whatever ends up happening)
+* Multithreaded convolution (Somewhat implemented, not functional)
+* OpenCL support (or possibly CUDA, whatever ends up happening)
 * Dynamically generated kernels for different levels of detail
 
 If you find this project interesting, feel free to use any of the code provided.
