@@ -7,10 +7,6 @@ import java.util.concurrent.Executors;
 import javax.imageio.ImageIO;
 
 public class ImageProcessor {
-	public ImageProcessor() {
-		
-	}
-	
 	public int[][] ProcessImage(Kernel kernel, RawImage image, int iterations) {
 		int[][] output = new int[image.width][image.height];
 		int padding = (kernel.size - 1) / 2;
