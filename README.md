@@ -5,8 +5,8 @@ This project is a very inefficient way to process images with a Sobel filter.
 This project was created as something for me to do in my free time, 
 optimizations will be infrequent, but are planned.
 
-Currently the program is single threaded and takes ~20 seconds to process the included image on a 6700HQ.
-For the sake of your sanity, I recommend using smaller images.
+~~Currently the program is single threaded and takes ~20 seconds to process the included image on a 6700HQ.~~
+The execution time was reduced. The current provided image takes ~0.7 seconds to complete with the current test, although i'm not sure how quickly the larger image would be processed.
 
 For larger images, larger kernels are required to obtain the desired results.
 The current image uses the 7x7 kernel, there is a 3x3 kernel available for smaller images.
